@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-project(Base)
+project(ChessV2)
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "-g -std=c++0x")
@@ -17,10 +17,15 @@ set(BOOST_COMPONENTS system thread date_time filesystem)
 find_package(Boost COMPONENTS ${BOOST_COMPONENTS} REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
 
+set(ClanLib_MAJOR_VERSION 2)
+set(ClanLib_MINOR_VERSION 2)
+
 find_package(ClanLib REQUIRED)
 include_directories(${ClanLib_INCLUDE_DIRS})
 
-add_subdirectory(src) 
+add_subdirectory(client) 
+
+#Not even started yet, lol
+#add_subdirectory(server) 
 
 
-#set(CMAKE_INCLUDE_CURRENT_DIR ON)

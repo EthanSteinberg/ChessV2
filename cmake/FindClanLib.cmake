@@ -2,6 +2,10 @@
 # ClanLib is a cross platform SDK geared toward making games. It is
 # available from http://clanlib.org.
 #
+# Please define the following before starting this module
+#  ClanLib_MAJOR_VERSION
+#  ClanLib_MINOR_VERSION
+#
 # The following are defined by this module:
 #  ClanLib_FOUND - TRUE if ClanLib was found
 #  ClanLib_INCLUDE_DIRS - Directory containing the ClanLib headers
@@ -46,7 +50,7 @@ ENDMACRO(ClanLib_ERR)
 
 MACRO(ClanLib_FIND_COMPONENT COMPONENT)
   ClanLib_MSG("Checking for Clan${COMPONENT}")
-  FIND_LIBRARY(ClanLib_${COMPONENT}_LIBRARY clan22${COMPONENT}
+  FIND_LIBRARY(ClanLib_${COMPONENT}_LIBRARY clan${ClanLib_MAJOR_VERSION}${ClanLib_MINOR_VERSION}${COMPONENT}
     ${CLANLIB_ROOT_DIR}/lib /lib /usr/lib /usr/local/lib
     DOC "Library name for clan${COMPONENT}.")
   IF(ClanLib_${COMPONENT}_LIBRARY)
@@ -65,9 +69,9 @@ ENDMACRO(ClanLib_FIND_COMPONENT)
 ClanLib_MSG("Checking for ClanLib")
 
 FIND_PATH(ClanLib_INCLUDE_DIRS ClanLib/core.h
-  ${ClanLib_ROOT_DIR}/include ${ClanLib_ROOT_DIR}/include/ClanLib-2.2
-  /usr/local/include          /usr/local/include/ClanLib-2.2
-  /usr/include                /usr/include/ClanLib-2.2
+  ${ClanLib_ROOT_DIR}/include ${ClanLib_ROOT_DIR}/include/ClanLib-${ClanLib_MAJOR_VERSION}.${ClanLib_MINOR_VERSION}
+  /usr/local/include          /usr/local/include/ClanLib-${ClanLib_MAJOR_VERSION}.${ClanLib_MINOR_VERSION}
+  /usr/include                /usr/include/ClanLib--${ClanLib_MAJOR_VERSION}.${ClanLib_MINOR_VERSION}
   DOC "Where to find the ClanLib includes.")
 IF(ClanLib_INCLUDE_DIRS)
   ClanLib_MSG("Checking for ClanLib -- headers")

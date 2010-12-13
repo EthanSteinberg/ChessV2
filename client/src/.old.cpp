@@ -1,52 +1,73 @@
-#include <ClanLib/core.h>
-#include <ClanLib/display.h>
+
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <CEGUI/CEGUI.h>
+#include <CEGUI/RendererModules/OpenGL/CEGUIOpenGLRenderer.h>
+
+
 #include <ClanLib/gl.h>
+#include <ClanLib/display.h>
+#include <ClanLib/core.h>
 #include <ClanLib/application.h>
 #include <ClanLib/sound.h>
 
+#include <iostream>
+
+   using std::cout; using std::endl;
 class SpritesExample
 {
 private:
+         int sizex;
+         int sizey;
 	bool quit;
 
 public:
+      SpritesExample(int startx,int starty) : sizex(startx), sizey(starty){}
+       void resize(CL_Rect &lol)
+      {
+         int x = lol.right- lol.left;
+         int y = lol.bottom - lol.top;
+         sizex = x;
+         sizey = y;         
+      }
+
 	void run()
 	{
+ 
 		quit = false;
 
 		CL_DisplayWindowDescription window_desc;
-		window_desc.set_size(CL_Size(640, 480), true);
-		window_desc.set_title("Sunset");
+		window_desc.set_size(CL_Size(sizex, sizey), true);
+		window_desc.set_title("Chess");
+                window_desc.set_allow_resize(true);
 		CL_DisplayWindow window(window_desc);
 
 		CL_Slot slot_quit = window.sig_window_close().connect(this, &SpritesExample::on_window_close);
+                window.func_window_resize().set(this, &SpritesExample::resize);
 
 		CL_GraphicContext gc = window.get_gc();
 		CL_InputDevice keyboard = window.get_ic().get_keyboard();
 
 		CL_ResourceManager resources("resources.xml");
 
-		CL_Sprite boat_sprite(gc, "Boat", &resources);
+                CL_Image lol(gc,"Board",&resources);
 
-		CL_FontDescription font_desc;
-		font_desc.set_typeface_name("tahoma");
-		font_desc.set_height(30);
-		CL_Font_System font(gc, font_desc);
+               CEGUI::OpenGLRenderer & myRenderer = CEGUI::OpenGLRenderer::bootstrapSystem();
+                        CEGUI::System::getSingleton().renderGUI();
+			window.flip();
 
-		while (!quit)
+         	while (!quit)
 		{
 			if(keyboard.get_keycode(CL_KEY_ESCAPE) == true)
 				quit = true;
 
-			draw_sunset(gc);
 
-			boat_sprite.draw(gc, 70, 252);
+		        CL_Colorf red(155/255.0f, 60/255.0f, 68/255.0f);
+		        //CL_Draw::fill(gc, CL_Rectf(0, sizey, sizex, 0), red);
+                        //lol.draw(gc,CL_Rectf(0,sizey,sizex,0));
+                        //CEGUI::System::getSingleton().renderGUI();
 
-			font.draw_text(gc, 146, 50, "A quiet evening in the pacific...");
-
-			boat_sprite.update();
-
-			window.flip();
+			//window.flip();
 			CL_KeepAlive::process();
 			CL_System::sleep(10);
 		}
@@ -84,12 +105,11 @@ public:
 	{
 		quit = true;
 	}
+   
+      
 };
 
-class Program
-{
-public:
-	static int main(const std::vector<CL_String> &args)
+int mymain(const std::vector<CL_String> &args)
 	{
 		CL_SetupCore setup_core;
 		CL_SetupDisplay setup_display;
@@ -97,7 +117,7 @@ public:
 
 		try
 		{
-			SpritesExample example;
+			SpritesExample example(640,480);
 			example.run();
 		}
 		catch(CL_Exception &exception)
@@ -112,5 +132,4 @@ public:
 
 		return 0;
 	}
-};
-CL_ClanApplication app(&Program::main);
+CL_ClanApplication app(mymain);
