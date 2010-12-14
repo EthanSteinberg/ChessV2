@@ -1,6 +1,5 @@
-#include "chessClientGui.h"
+#include "chessGui.h"
 
-#include "chessClient.h"
 #include "chessComponent.h"
 #include "chessMenu.h"
 
@@ -15,16 +14,13 @@
 using boost::shared_ptr;
 using boost::make_shared;
 
-void t_chessClientGui::run()
+void t_chessGui::run()
 {
    gui->exec();
 }
 
-void t_chessClientGui::init()
+void t_chessGui::init()
 {
-   
-   board = make_shared<t_chessClient>(); 
-   
    resources = make_shared<CL_ResourceManager>("res/resources.xml");
    //gui = make_shared<CL_GUIManager>("res");
    gui = new CL_GUIManager("res");
@@ -41,7 +37,7 @@ void t_chessClientGui::init()
 }
 
 
-void t_chessClientGui::createWindow()
+void t_chessGui::createWindow()
 {
    CL_DisplayWindowDescription window_desc;
    window_desc.set_size(CL_Size(sizex, sizey), true);
@@ -51,11 +47,11 @@ void t_chessClientGui::createWindow()
    //window = make_shared<CL_Window>(gui.get(),window_desc);
    window = make_shared<CL_Window>(gui,window_desc);
 
-   window->func_resized().set(this,&t_chessClientGui::resizedFunc);
-   window->func_close().set(this,&t_chessClientGui::closeFunc);
+   window->func_resized().set(this,&t_chessGui::resizedFunc);
+   window->func_close().set(this,&t_chessGui::closeFunc);
 }
 
-void t_chessClientGui::resizedFunc()
+void t_chessGui::resizedFunc()
 {
    CL_Rect client_area = window->get_client_area();
    menu->set_geometry(CL_Rect(client_area.left,client_area.top,client_area.right,client_area.top+20));
@@ -69,7 +65,7 @@ void t_chessClientGui::resizedFunc()
    
 }
    
-bool t_chessClientGui::closeFunc()
+bool t_chessGui::closeFunc()
 {
    gui->exit_with_code(0);
    return true;

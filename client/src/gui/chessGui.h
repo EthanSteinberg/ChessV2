@@ -5,7 +5,6 @@
 #include <boost/shared_ptr.hpp>
 
 // Foreward declarations for needed classes
-class t_chessClient;
 class t_chessComponent;
 class t_chessMenu;
 
@@ -16,10 +15,10 @@ class CL_Rect;
 class CL_GUIManager;
 class CL_Label;
 
-class t_chessClientGui : boost::noncopyable
+class t_chessGui : boost::noncopyable
 {
 public:
-   t_chessClientGui() : sizex(640), sizey(480)
+   t_chessGui() : sizex(640), sizey(480)
    {}
 
    void run();
@@ -32,10 +31,9 @@ private:
 
    boost::shared_ptr<CL_ResourceManager> resources;
    boost::shared_ptr<CL_Window> window;
-   //boost::shared_ptr<CL_GUIManager> gui;
+
    CL_GUIManager *gui;
 
-   boost::shared_ptr<t_chessClient> board;
    boost::shared_ptr<t_chessComponent> comp;
    boost::shared_ptr<t_chessMenu> menu;
 

@@ -9,23 +9,15 @@ set(LIBS  "-L/usr/local/lib -lclan22GL -lclan22Display -lpng -ljpeg -lfreetype -
 set(CMAKE_CXX_FLAGS_DEBUG "-Wall -march=native -std=c++0x  ${LIBS}")
 
 set(HDRS 
-      src/chessClientGui.h
       )
  
 set(SRCS
-      src/chessClientGui.cpp
       src/main.cpp
 )
 
 
-add_library(ChessCli STATIC src/chessClient.h src/chessClient.cpp)
+add_executable(ChessClient ${HDRS} ${SRCS})
+target_link_libraries(ChessClient ChessCli ChessGui)
 
-add_library(ChessComponent STATIC src/chessComponent.h src/chessComponent.cpp)
-target_link_libraries(ChessComponent ${ClanLib_LIBRARIES})
 
-add_library(ChessMenu STATIC src/chessMenu.h src/chessMenu.cpp)
-target_link_libraries(ChessMenu ${ClanLib_LIBRARIES})
-
-add_executable(ChessGui ${HDRS} ${SRCS})
-target_link_libraries(ChessGui ${ClanLib_LIBRARIES} ChessComponent ChessMenu ChessCli)
-
+add_subdirectory(src)

@@ -8,7 +8,8 @@
 #include <ClanLib/sound.h>
 #include <vector>
 
-#include "chessClientGui.h"
+#include "gui/chessGui.h"
+#include "cli/chessCli.h"
 
 using std::vector;
 
@@ -22,7 +23,8 @@ int MyMain(const vector<CL_String> &args)
 
    try
    {
-      t_chessClientGui gui;
+      t_chessGui gui;
+      t_chessCli cli;
 
       gui.init();
       gui.run();
