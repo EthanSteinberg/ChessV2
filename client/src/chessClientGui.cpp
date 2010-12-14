@@ -1,6 +1,8 @@
 #include "chessClientGui.h"
+
 #include "chessClient.h"
 #include "chessComponent.h"
+#include "chessMenu.h"
 
 #include <ClanLib/core.h>
 #include <ClanLib/gl.h>
@@ -24,11 +26,16 @@ void t_chessClientGui::init()
    board = make_shared<t_chessClient>(); 
    
    resources = make_shared<CL_ResourceManager>("res/resources.xml");
-   gui = make_shared<CL_GUIManager>("res");
+   //gui = make_shared<CL_GUIManager>("res");
+   gui = new CL_GUIManager("res");
    
    createWindow();
 
    comp = make_shared<t_chessComponent>(window.get(),resources);
+   menu = make_shared<t_chessMenu>(window.get(),resources);
+   label = make_shared<CL_Label>(window.get());
+   
+   label->set_text("Wow this sucks");
    
    resizedFunc();
 }
@@ -41,7 +48,8 @@ void t_chessClientGui::createWindow()
    window_desc.set_title("Chess");
    window_desc.set_allow_resize(true);
    
-   window = make_shared<CL_Window>(gui.get(),window_desc);
+   //window = make_shared<CL_Window>(gui.get(),window_desc);
+   window = make_shared<CL_Window>(gui,window_desc);
 
    window->func_resized().set(this,&t_chessClientGui::resizedFunc);
    window->func_close().set(this,&t_chessClientGui::closeFunc);
@@ -50,8 +58,15 @@ void t_chessClientGui::createWindow()
 void t_chessClientGui::resizedFunc()
 {
    CL_Rect client_area = window->get_client_area();
-   comp->set_geometry(CL_Rect(client_area.left,client_area.top,client_area.right,client_area.bottom));
+   menu->set_geometry(CL_Rect(client_area.left,client_area.top,client_area.right,client_area.top+20));
+   menu->request_repaint();
+   
+   label->set_geometry(CL_Rect(client_area.left,client_area.top+20 ,client_area.right,client_area.top+20 + 15));
+   label->request_repaint();
+   
+   comp->set_geometry(CL_Rect(client_area.left,client_area.top+20 + 15,client_area.right,client_area.bottom));
    comp->request_repaint();
+   
 }
    
 bool t_chessClientGui::closeFunc()

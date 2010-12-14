@@ -18,8 +18,6 @@ t_chessComponent::t_chessComponent(CL_GUIComponent *parent, shared_ptr<CL_Resour
 
 void t_chessComponent::renderFunc(CL_GraphicContext &gc, const CL_Rect &clip_rect)
 {
-   CL_Colorf red(155/255.0f, 60/255.0f, 68/255.0f);
-   CL_Draw::fill(gc, clip_rect,red);
    boardImage->draw(gc,clip_rect);
 }
 

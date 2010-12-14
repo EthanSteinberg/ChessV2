@@ -7,12 +7,14 @@
 // Foreward declarations for needed classes
 class t_chessClient;
 class t_chessComponent;
+class t_chessMenu;
 
 class CL_ResourceManager;
 class CL_GraphicContext;
 class CL_Window;
 class CL_Rect;
 class CL_GUIManager;
+class CL_Label;
 
 class t_chessClientGui : boost::noncopyable
 {
@@ -30,10 +32,14 @@ private:
 
    boost::shared_ptr<CL_ResourceManager> resources;
    boost::shared_ptr<CL_Window> window;
-   boost::shared_ptr<CL_GUIManager> gui;
+   //boost::shared_ptr<CL_GUIManager> gui;
+   CL_GUIManager *gui;
 
    boost::shared_ptr<t_chessClient> board;
    boost::shared_ptr<t_chessComponent> comp;
+   boost::shared_ptr<t_chessMenu> menu;
+
+   boost::shared_ptr<CL_Label> label;
    
    int sizex;
    int sizey;
