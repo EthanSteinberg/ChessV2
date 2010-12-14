@@ -12,8 +12,6 @@ class CL_ResourceManager;
 class CL_GraphicContext;
 class CL_Window;
 class CL_Rect;
-class CL_Image;
-class CL_Slot;
 class CL_GUIManager;
 
 class t_chessClientGui : boost::noncopyable
@@ -26,23 +24,19 @@ public:
    void init();
          
 private:
-   void resize(CL_Rect &);
    void createWindow();
-   void onQuit();
+   void resizedFunc();
+   bool closeFunc();
 
-   boost::shared_ptr<CL_Slot> quitSlot;
    boost::shared_ptr<CL_ResourceManager> resources;
-   boost::shared_ptr<CL_Image> boardImage;
    boost::shared_ptr<CL_Window> window;
    boost::shared_ptr<CL_GUIManager> gui;
 
    boost::shared_ptr<t_chessClient> board;
-
-   CL_GraphicContext *gc;
+   boost::shared_ptr<t_chessComponent> comp;
    
    int sizex;
    int sizey;
-   bool quit;
 };
 
 #endif

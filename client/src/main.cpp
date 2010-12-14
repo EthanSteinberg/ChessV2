@@ -1,6 +1,11 @@
 #include <ClanLib/core.h>
 #include <ClanLib/application.h>
 
+#include <ClanLib/core.h>
+#include <ClanLib/gl.h>
+#include <ClanLib/display.h>
+#include <ClanLib/gui.h>
+#include <ClanLib/sound.h>
 #include <vector>
 
 #include "chessClientGui.h"
@@ -10,6 +15,10 @@ using std::vector;
 int MyMain(const vector<CL_String> &args)
 {
    CL_Console console;
+   CL_SetupCore setupCore;
+   CL_SetupDisplay setupDisplay;
+   CL_SetupGL setupGL;
+   CL_SetupGUI setupGUI;
 
    try
    {
