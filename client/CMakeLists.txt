@@ -21,9 +21,11 @@ set(SRCS
 add_library(ChessCli STATIC src/chessClient.h src/chessClient.cpp)
 
 add_library(ChessComponent STATIC src/chessComponent.h src/chessComponent.cpp)
-target_link_libraries(ChessComponent ${ClanLib_LIBRARIES} ChessCli)
+target_link_libraries(ChessComponent ${ClanLib_LIBRARIES})
 
+add_library(ChessMenu STATIC src/chessMenu.h src/chessMenu.cpp)
+target_link_libraries(ChessMenu ${ClanLib_LIBRARIES})
 
 add_executable(ChessGui ${HDRS} ${SRCS})
-target_link_libraries(ChessGui ${ClanLib_LIBRARIES} ChessComponent ChessCli)
+target_link_libraries(ChessGui ${ClanLib_LIBRARIES} ChessComponent ChessMenu ChessCli)
 
