@@ -23,6 +23,7 @@ private:
    void renderFunc(CL_GraphicContext &gc, const CL_Rect &clip_rect);
    void resizeFunc();
    void messageFunc(CL_GUIMessage &lol);
+   void buttonPushed();
 
    boost::shared_ptr<CL_Image> boardImage;
    boost::shared_ptr<CL_ResourceManager> resources;

@@ -21,9 +21,9 @@ void t_chessGui::run()
 
 void t_chessGui::init()
 {
-   resources = make_shared<CL_ResourceManager>("res/resources.xml");
+   resources = make_shared<CL_ResourceManager>("../res/resources.xml");
    //gui = make_shared<CL_GUIManager>("res");
-   gui = new CL_GUIManager("res");
+   gui = new CL_GUIManager("../res");
    
    createWindow();
 

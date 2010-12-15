@@ -4,9 +4,12 @@
 #include <ClanLib/display.h>
    
 #include <boost/make_shared.hpp>
+#include <boost/bind.hpp>
 
 using boost::make_shared;
 using boost::shared_ptr;
+
+using boost::bind;
 
 t_chessMenu::t_chessMenu(CL_GUIComponent *parent, shared_ptr<CL_ResourceManager> resPtr) : CL_GUIComponent(parent), resources(resPtr)
 {
@@ -17,7 +20,7 @@ t_chessMenu::t_chessMenu(CL_GUIComponent *parent, shared_ptr<CL_ResourceManager>
    menuBar = make_shared<CL_MenuBar>(this);
    
    popupMenu = make_shared<CL_PopupMenu>();
-   popupMenu->insert_item("Hello Peeps");
+   popupMenu->insert_item("Hello Peeps").func_clicked().set(this,&t_chessMenu::buttonPushed);
 
    menuBar->add_menu("Lols pops",*popupMenu);
 }
@@ -33,4 +36,9 @@ void t_chessMenu::resizeFunc()
 
 void t_chessMenu::messageFunc(CL_GUIMessage &lol)
 {
+}
+
+void t_chessMenu::buttonPushed()
+{
+   std::cout<<"The button was pushed"<<std::endl;
 }

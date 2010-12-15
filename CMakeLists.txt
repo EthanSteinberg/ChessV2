@@ -3,7 +3,9 @@ cmake_minimum_required(VERSION 2.6)
 project(ChessV2)
 
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "-g -std=c++0x")
+
+set(LIBS  "-lpng -ljpeg -lfreetype -lz -lfontconfig -lX11 -lclan22CSSLayout -lpthread")
+set(CMAKE_CXX_FLAGS_DEBUG "-Wall -march=native -std=c++0x  ${LIBS}")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")	
 
