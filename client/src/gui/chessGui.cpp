@@ -11,6 +11,11 @@
 
 #include <boost/make_shared.hpp>
 
+#include <pantheios/inserters.hpp>
+#include <pantheios/pantheios.hpp>
+
+#define debug(X) pantheios::log(pantheios::debug,X)
+
 using boost::shared_ptr;
 using boost::make_shared;
 
@@ -20,7 +25,9 @@ void t_chessGui::run()
 }
 
 void t_chessGui::init()
-{
+{ 
+   debug("Entering t_chessGui::init()");
+
    resources = make_shared<CL_ResourceManager>("../res/resources.xml");
    //gui = make_shared<CL_GUIManager>("res");
    gui = new CL_GUIManager("../res");

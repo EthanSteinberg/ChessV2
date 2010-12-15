@@ -29,10 +29,65 @@ set(ClanLib_MINOR_VERSION 2)
 find_package(ClanLib REQUIRED)
 include_directories(${ClanLib_INCLUDE_DIRS})
 
-set(Dir ${CMAKE_SOURCE_DIR}/lib/Pantheios/lib)
 
-add_library(Pantheios STATIC IMPORTED)
-set_target_properties(Pantheios PROPERTIES IMPORTED_LOCATION ${Dir}/libpantheios.1.core.gcc44.debug.a ${Dir}/libpantheios.1.util.gcc44.debug.a ${Dir}/libpantheios.1.fe.simple.gcc44.debug.a ${Dir}/libpantheios.1.bec.file.gcc44.debug.a ${Dir}/libpantheios.1.be.file.gcc44.debug.a)
+
+set(Dir ${CMAKE_SOURCE_DIR}/lib/pantheios/lib)
+
+add_library(PantheiosCore STATIC IMPORTED)
+set_target_properties(PantheiosCore PROPERTIES IMPORTED_LOCATION 
+
+ 	${Dir}/libpantheios.1.core.gcc44.debug.a  
+
+)
+
+add_library(PantheiosFe STATIC IMPORTED)
+set_target_properties(PantheiosFe PROPERTIES IMPORTED_LOCATION 
+ 
+	${Dir}/libpantheios.1.fe.simple.gcc44.debug.a
+
+)
+
+add_library(PantheiosBeFprintf STATIC IMPORTED)
+set_target_properties(PantheiosBeFprintf PROPERTIES IMPORTED_LOCATION 
+
+	${Dir}/libpantheios.1.be.fprintf.gcc44.debug.a   
+
+)
+
+add_library(PantheiosBecFprintf STATIC IMPORTED)
+set_target_properties(PantheiosBecFprintf PROPERTIES IMPORTED_LOCATION 
+
+	${Dir}/libpantheios.1.bec.fprintf.gcc44.debug.a
+
+)
+
+add_library(PantheiosBeFile STATIC IMPORTED)
+set_target_properties(PantheiosBeFile PROPERTIES IMPORTED_LOCATION 
+
+	${Dir}/libpantheios.1.be.file.gcc44.debug.a   
+
+)
+
+add_library(PantheiosBecFile STATIC IMPORTED)
+set_target_properties(PantheiosBecFile PROPERTIES IMPORTED_LOCATION 
+
+	${Dir}/libpantheios.1.bec.file.gcc44.debug.a
+
+)
+
+add_library(PantheiosUtil STATIC IMPORTED)
+set_target_properties(PantheiosUtil PROPERTIES IMPORTED_LOCATION 
+
+	${Dir}/libpantheios.1.util.gcc44.debug.a 
+
+)
+
+set(PANTHEIOS_INCLUDE_DIRS ${CMAKE_SOURCE_DIR}/lib/pantheios/include ${CMAKE_SOURCE_DIR}/lib/stlsoft/include)
+set(PANTHEIOS_LIBRARIES PantheiosCore PantheiosFe  PantheiosBeFile PantheiosBecFile PantheiosUtil)
+
+include_directories(${CMAKE_SOURCE_DIR}/lib/pantheios/include ${CMAKE_SOURCE_DIR}/lib/stlsoft/include)
+
+
 
 add_subdirectory(client) 
 add_subdirectory(test)

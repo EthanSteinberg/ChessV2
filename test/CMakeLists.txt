@@ -1,13 +1,13 @@
 #CMakeLists file for server
 
+set(CMAKE_CXX_FLAGS_DEBUG "-Wall -march=native -std=c++0x")
 set(HDRS 
       )
  
 set(SRCS
-      src/main.cpp
+      main.cpp
 )
 
-
 add_executable(Test ${HDRS} ${SRCS})
-target_link_libraries(Test Pantheios)
+target_link_libraries(Test ${PANTHEIOS_LIBRARIES})
 

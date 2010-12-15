@@ -1,5 +1,8 @@
 #include "pantheios/pantheios.hpp" //primary header file, always be included
 #include "pantheios/frontends/stock.h"
+#include "pantheios/backends/bec.file.h"
+
+#include "pantheios/inserters.hpp"
 
 //Specify process identity
 const PAN_CHAR_T PANTHEIOS_FE_PROCESS_IDENTITY[] = "test.exe";
@@ -11,6 +14,7 @@ int main(int argc, char** argv){
 try
 {
 pantheios::log(pantheios::debug, "Entering main(", pantheios::args(argc, argv, pantheios::args::arg0FileOnly), ")");
+pantheios_be_file_setFilePath("file");
 pantheios::log_DEBUG("debug");
 pantheios::log_INFORMATIONAL("informational");
 pantheios::log_NOTICE("notice");
@@ -22,6 +26,7 @@ pantheios::log_EMERGENCY("emergency");
 
 return 1;
 }
+
 catch(std::bad_alloc&){
 pantheios::log_ALERT("out of memory");
 }
