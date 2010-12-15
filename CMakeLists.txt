@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.6)
 
 project(ChessV2)
 
+if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
+   message(FATAL_ERROR "ERROR: Building in source, please build out of it")
+endif()
+
 set(CMAKE_BUILD_TYPE Debug)
 
 set(LIBS  "-lpng -ljpeg -lfreetype -lz -lfontconfig -lX11 -lclan22CSSLayout -lpthread")
@@ -25,7 +29,13 @@ set(ClanLib_MINOR_VERSION 2)
 find_package(ClanLib REQUIRED)
 include_directories(${ClanLib_INCLUDE_DIRS})
 
+set(Dir ${CMAKE_SOURCE_DIR}/lib/Pantheios/lib)
+
+add_library(Pantheios STATIC IMPORTED)
+set_target_properties(Pantheios PROPERTIES IMPORTED_LOCATION ${Dir}/libpantheios.1.core.gcc44.debug.a ${Dir}/libpantheios.1.util.gcc44.debug.a ${Dir}/libpantheios.1.fe.simple.gcc44.debug.a ${Dir}/libpantheios.1.bec.file.gcc44.debug.a ${Dir}/libpantheios.1.be.file.gcc44.debug.a)
+
 add_subdirectory(client) 
+add_subdirectory(test)
 
 #Not even started yet, lol
 #add_subdirectory(server) 
