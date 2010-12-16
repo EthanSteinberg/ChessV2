@@ -64,10 +64,10 @@ void t_chessGui::resizedFunc()
    menu->set_geometry(CL_Rect(client_area.left,client_area.top,client_area.right,client_area.top+20));
    menu->request_repaint();
    
-   label->set_geometry(CL_Rect(client_area.left,client_area.top+20 ,client_area.right,client_area.top+20 + 15));
+   label->set_geometry(CL_Rect(client_area.left,client_area.top+50 ,client_area.right,client_area.top+50 + 15));
    label->request_repaint();
    
-   comp->set_geometry(CL_Rect(client_area.left,client_area.top+20 + 15,client_area.right,client_area.bottom));
+   comp->set_geometry(CL_Rect(client_area.left,client_area.top+50 + 15,client_area.right,client_area.bottom));
    comp->request_repaint();
    
 }
