@@ -4,6 +4,10 @@
 #include <boost/utility.hpp>
 #include <iostream>
 
+#include <pantheios/inserters.hpp>
+#include <pantheios/pantheios.hpp>
+
+#define debug(X) pantheios::log(pantheios::debug,X)
 
 class t_chessCli : boost::noncopyable
 {
@@ -13,7 +17,7 @@ public:
    
    ~t_chessCli()
    {
-      std::cout<<"I can only hope..."<<std::endl;  
+      debug("Exiting chessCli");  
    }
 
 private:
