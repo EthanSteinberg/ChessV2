@@ -29,14 +29,13 @@ void t_chessGui::init()
    debug("Entering t_chessGui::init()");
 
    resources = new CL_ResourceManager("../res/resources.xml");
-   //gui = make_shared<CL_GUIManager>("res");
    gui = new CL_GUIManager("../res");
    
    createWindow();
 
-   comp = make_shared<t_chessComponent>(window.get(),resources);
-   menu = make_shared<t_chessMenu>(window.get(),resources);
-   label = make_shared<CL_Label>(window.get());
+   comp = make_shared<t_chessComponent>(window,resources);
+   menu = make_shared<t_chessMenu>(window,resources);
+   label = make_shared<CL_Label>(window);
    
    label->set_text("Wow this sucks");
    
@@ -52,7 +51,7 @@ void t_chessGui::createWindow()
    window_desc.set_allow_resize(true);
    
    //window = make_shared<CL_Window>(gui.get(),window_desc);
-   window = make_shared<CL_Window>(gui,window_desc);
+   window = new CL_Window(gui,window_desc);
 
    window->func_resized().set(this,&t_chessGui::resizedFunc);
    window->func_close().set(this,&t_chessGui::closeFunc);

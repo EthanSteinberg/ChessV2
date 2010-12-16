@@ -29,11 +29,10 @@ private:
    void resizedFunc();
    bool closeFunc();
 
-   CL_ResourceManager* resources;
-   boost::shared_ptr<CL_Window> window;
-
    CL_GUIManager *gui;
+   CL_ResourceManager* resources;
 
+   CL_Window* window;
    boost::shared_ptr<t_chessComponent> comp;
    boost::shared_ptr<t_chessMenu> menu;
 
