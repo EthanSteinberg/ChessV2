@@ -28,7 +28,7 @@ void t_chessGui::init()
 { 
    debug("Entering t_chessGui::init()");
 
-   resources = make_shared<CL_ResourceManager>("../res/resources.xml");
+   resources = new CL_ResourceManager("../res/resources.xml");
    //gui = make_shared<CL_GUIManager>("res");
    gui = new CL_GUIManager("../res");
    

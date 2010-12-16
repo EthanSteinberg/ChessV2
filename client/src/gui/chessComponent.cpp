@@ -12,14 +12,14 @@ using boost::shared_ptr;
 
 #define debug(X) pantheios::log(pantheios::debug,X)
 
-t_chessComponent::t_chessComponent(CL_GUIComponent *parent, shared_ptr<CL_ResourceManager> resPtr) : CL_GUIComponent(parent), resources(resPtr)
+t_chessComponent::t_chessComponent(CL_GUIComponent *parent, CL_ResourceManager *resPtr) : CL_GUIComponent(parent), resources(resPtr)
 {
    
    func_render().set(this,&t_chessComponent::renderFunc);
    func_resized().set(this,&t_chessComponent::resizeFunc);
    func_process_message().set(this,&t_chessComponent::messageFunc);
       
-   boardImage = make_shared<CL_Image>(get_gc(),"Board",resources.get()); 
+   boardImage = make_shared<CL_Image>(get_gc(),"Board",resources); 
 }
 
 void t_chessComponent::renderFunc(CL_GraphicContext &gc, const CL_Rect &clip_rect)

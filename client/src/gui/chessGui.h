@@ -29,7 +29,7 @@ private:
    void resizedFunc();
    bool closeFunc();
 
-   boost::shared_ptr<CL_ResourceManager> resources;
+   CL_ResourceManager* resources;
    boost::shared_ptr<CL_Window> window;
 
    CL_GUIManager *gui;

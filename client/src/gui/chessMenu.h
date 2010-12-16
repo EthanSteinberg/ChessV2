@@ -17,7 +17,7 @@ class t_chessMenu : boost::noncopyable, public CL_GUIComponent
 {
 public:
 
-   t_chessMenu(CL_GUIComponent *parent, boost::shared_ptr<CL_ResourceManager> resPtr);
+   t_chessMenu(CL_GUIComponent *parent, CL_ResourceManager *resPtr);
 
 private:   
    void renderFunc(CL_GraphicContext &gc, const CL_Rect &clip_rect);
@@ -26,7 +26,7 @@ private:
    void buttonPushed();
 
    boost::shared_ptr<CL_Image> boardImage;
-   boost::shared_ptr<CL_ResourceManager> resources;
+   CL_ResourceManager *resources;
    
    boost::shared_ptr<CL_MenuBar> menuBar;
    boost::shared_ptr<CL_PopupMenu> popupMenu;

@@ -14,8 +14,7 @@ class CL_ResourceManager;
 class t_chessComponent : boost::noncopyable, public CL_GUIComponent
 {
 public:
-
-   t_chessComponent(CL_GUIComponent *parent, boost::shared_ptr<CL_ResourceManager> resPtr);
+   t_chessComponent(CL_GUIComponent *parent, CL_ResourceManager *resPtr);
 
 private:   
    void renderFunc(CL_GraphicContext &gc, const CL_Rect &clip_rect);
@@ -23,7 +22,7 @@ private:
    void messageFunc(CL_GUIMessage &lol);
 
    boost::shared_ptr<CL_Image> boardImage;
-   boost::shared_ptr<CL_ResourceManager> resources;
+   CL_ResourceManager *resources;
       
 
 };

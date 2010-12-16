@@ -16,7 +16,7 @@ using boost::shared_ptr;
 
 using boost::bind;
 
-t_chessMenu::t_chessMenu(CL_GUIComponent *parent, shared_ptr<CL_ResourceManager> resPtr) : CL_GUIComponent(parent), resources(resPtr)
+t_chessMenu::t_chessMenu(CL_GUIComponent *parent, CL_ResourceManager *resPtr) : CL_GUIComponent(parent), resources(resPtr)
 {
    func_render().set(this,&t_chessMenu::renderFunc);
    func_resized().set(this,&t_chessMenu::resizeFunc);
