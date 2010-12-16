@@ -9,7 +9,7 @@ endif()
 set(CMAKE_BUILD_TYPE Debug)
 
 set(LIBS  "-lpng -ljpeg -lfreetype -lz -lfontconfig -lX11 -lclan22CSSLayout -lpthread")
-set(CMAKE_CXX_FLAGS_DEBUG "-Wall -march=native -std=c++0x  ${LIBS}")
+set(CMAKE_CXX_FLAGS_DEBUG "-Wall -march=native -std=c++0x  -g -O0 ${LIBS}")
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake;${CMAKE_MODULE_PATH}")	
 
