@@ -16,6 +16,12 @@ using boost::shared_ptr;
 
 using boost::bind;
 
+void testingFunc()
+{
+   debug("The menu was closed");
+}
+
+
 t_chessMenu::t_chessMenu(CL_GUIComponent *parent, CL_ResourceManager *resPtr) : CL_GUIComponent(parent), resources(resPtr)
 {
    func_render().set(this,&t_chessMenu::renderFunc);
@@ -25,7 +31,15 @@ t_chessMenu::t_chessMenu(CL_GUIComponent *parent, CL_ResourceManager *resPtr) : 
    menuBar = make_shared<CL_MenuBar>(this);
    
    popupMenu = make_shared<CL_PopupMenu>();
+
+   CL_PopupMenuItem lolItem = popupMenu->insert_item("Wow if this works once");
+   lolItem.set_text("Wow if this works");
+
    popupMenu->insert_item("Hello Peeps").func_clicked().set(this,&t_chessMenu::buttonPushed);
+   
+   //popupMenu->start(parent,CL_Point(10,10));
+   
+   popupMenu->func_close().set(testingFunc);
 
    menuBar->add_menu("Lols pops",*popupMenu);
 }
@@ -42,6 +56,7 @@ void t_chessMenu::resizeFunc()
 
 void t_chessMenu::messageFunc(CL_GUIMessage &lol)
 {
+   debug("chessMenu: message recieved");
 }
 
 void t_chessMenu::buttonPushed()
